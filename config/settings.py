@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'markets',
 ]
 
 MIDDLEWARE = [
@@ -240,6 +241,10 @@ JAZZMIN_SETTINGS = {
         "auth": "fas fa-users-cog",
         "auth.user": "fas fa-user",
         "auth.Group": "fas fa-users",
+
+        "markets": "fas fa-chart-line",           # icono para la app Markets
+        "markets.MarketPair": "fas fa-exchange-alt",  # icono para MarketPair
+        "markets.TimeFrame": "fas fa-clock",         # icono para TimeFrame
     },
     # Icons that are used when one is not manually specified
     "default_icon_parents": "fas fa-chevron-circle-right",
