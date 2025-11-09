@@ -41,7 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'markets',
+    'apps.markets',
+    'apps.candles',
+    "django_celery_beat",
+    "django_celery_results",
 ]
 
 MIDDLEWARE = [
@@ -242,9 +245,24 @@ JAZZMIN_SETTINGS = {
         "auth.user": "fas fa-user",
         "auth.Group": "fas fa-users",
 
-        "markets": "fas fa-chart-line",           # icono para la app Markets
-        "markets.MarketPair": "fas fa-exchange-alt",  # icono para MarketPair
-        "markets.TimeFrame": "fas fa-clock",         # icono para TimeFrame
+        "markets": "fas fa-chart-line",          
+        "markets.MarketPair": "fas fa-exchange-alt",  
+        "markets.TimeFrame": "fas fa-clock",         
+
+        "candles": "fas fa-chart-line",          
+        "candles.Candle": "fas fa-chart-line",    
+
+        "django_celery_beat.ClockedSchedule": "fas fa-clock", 
+        "django_celery_beat.crontabschedule": "fas fa-clock", 
+       
+        "django_celery_beat.solarschedule": "fas fa-clock", 
+        "django_celery_beat.intervalschedule": "fas fa-clock", 
+        "django_celery_beat.periodictask": "fas fa-tasks", 
+
+        "django_celery_results.TaskResult": "fas fa-tasks",
+        "django_celery_results.groupresult": "fas fa-tasks",
+       
+
     },
     # Icons that are used when one is not manually specified
     "default_icon_parents": "fas fa-chevron-circle-right",
@@ -282,3 +300,14 @@ JAZZMIN_SETTINGS = {
     # Add a language dropdown into the admin
     "language_chooser": True,
 }
+
+
+CELERY_BROKER_URL = 'redis://localhost:6379/2'  # o tu broker
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+
+
